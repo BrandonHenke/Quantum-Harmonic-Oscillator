@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "quantum-harmonic-oscillator"
+version = "0.1.0"
+description = ""
+authors = ["Brandon Henke <brandon.henke3@gmail.com>"]
+readme = "README.md"
+packages = [{include = "quantum_harmonic_oscillator"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+matplotlib = "^3.6.2"
+scipy = "^1.9.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
