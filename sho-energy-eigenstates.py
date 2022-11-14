@@ -8,7 +8,7 @@ from scipy.stats import poisson
 
 h = 1
 m = 1
-ω = 1
+ω = 3
 
 N = 6
 E = h * ω * (N+1/2)
@@ -25,7 +25,7 @@ print(A)
 def U(x):
 	return m*ω**2*x**2/2
 
-x = np.arange(-A,A,Δx)
+x = np.arange(-2*A,2*A,Δx)
 
 def psi(n : int,x):
 	f1 = 1/np.sqrt(2**n * np.math.factorial(n))
@@ -44,8 +44,8 @@ def Psi(N,x,t,E):
 	return sum([np.exp(1j*ω*(n+1/2)*t)*poisson.pmf(n,h*ω*(E+1/2))*psi(n,x) for n in range(N)])
 
 def init():
-    ax.set_xlim(-A, A)
-    ax.set_ylim(-0.1, 3)
+    # ax.set_xlim(-A, A)
+    ax.set_ylim(-0.1, 5)
     return ln0,ln,
 
 # def update(frame):
@@ -54,12 +54,12 @@ def init():
 #     return ln,
 
 
-T = 2*np.pi*ω
+T = 2*np.pi/ω
 times = np.arange(0, T, 1/60)
 Y = [[] for _ in range(len(ln))]
 for n in range(len(ln)):
     for t in times:
-        Y[n].append(3*np.abs(Psi(10,x,t,n))**2)
+        Y[n].append((2*n+1)*np.abs(Psi(15,x,t,n))**2+n)
 
 def update(frame):
     for n in range(len(ln)):
