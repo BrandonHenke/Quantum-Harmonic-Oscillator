@@ -10,9 +10,11 @@ h = 1
 m = 1
 ω = 1
 
-N = 4
+N = 6
 E = h * ω * (N+1/2)
 A = np.sqrt(2*E/(m*ω**2))
+
+print(A)
 
 # A = 1
 # ω = 2*h*(n+1/2) / (m*A**2)
@@ -35,28 +37,41 @@ def psi(n : int,x):
 
 
 fig, ax = plt.subplots()
-xdata, ydata = [], []
-ln, = ax.plot([], [])
+ln0, = ax.plot(x, U(x))
+ln = [ax.plot([], []) for _ in range(5)]
 
-def Psi(N,x,t):
-	return sum([np.exp(1j*h*ω*(n+1/2)*t/h)*poisson.pmf(n,h*ω*(1+1/2))*psi(n,x) for n in range(N)])
+def Psi(N,x,t,E):
+	return sum([np.exp(1j*ω*(n+1/2)*t)*poisson.pmf(n,h*ω*(E+1/2))*psi(n,x) for n in range(N)])
 
 def init():
     ax.set_xlim(-A, A)
-    ax.set_ylim(-0.1, 1)
-    return ln,
+    ax.set_ylim(-0.1, 3)
+    return ln0,ln,
+
+# def update(frame):
+#     ydata = np.abs(Psi(10,x,frame))**2
+#     ln.set_data(x, ydata)
+#     return ln,
+
+
+T = 2*np.pi*ω
+times = np.arange(0, T, 1/60)
+Y = [[] for _ in range(len(ln))]
+for n in range(len(ln)):
+    for t in times:
+        Y[n].append(3*np.abs(Psi(10,x,t,n))**2)
 
 def update(frame):
-    ydata = np.real(np.abs(Psi(10,x,frame))**2)
-    ln.set_data(x, ydata)
-    return ln,
+    for n in range(len(ln)):
+        l = ln[n][0]
+        l.set_data(x, Y[n][frame])
+    return ln0,ln,
 
 # for n in range(N):
 # 	# ω = 2*h*(n+1/2) / (m*A**2)
 # 	# plt.plot(x,psi(n,x)+h*ω*(n+1/2))
 # 	plt.plot(x,psi(n,x)**2)
 
-T = 10
-ani = FuncAnimation(fig, update, frames=np.arange(0, T, T/60),
-                    init_func=init, blit=False)
+ani = FuncAnimation(fig, update, init_func=init, frames=len(times), interval=16.7, repeat=True) 
+
 plt.show()
