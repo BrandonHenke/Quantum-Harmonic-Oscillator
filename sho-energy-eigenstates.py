@@ -21,8 +21,6 @@ A = np.sqrt(2*E/(m*ω**2))
 def U(x):
 	return m*ω**2*x**2/2
 
-
-
 x = np.arange(-A,A,Δx)
 plt.plot(x,U(x))
 
