@@ -45,7 +45,7 @@ Y = [[] for _ in range(len(states))]
 for n in range(len(states)):
 	n_start = 1
 	for t in times:
-		Y[n].append((2*n+1)*np.abs(states[n].psi(x,t))**2+states[n].E)
+		Y[n].append((2*n+1)*states[n].psi(x,t)+states[n].E)
 
 def update(frame):
 	for n in range(len(ln)):
@@ -55,7 +55,7 @@ def update(frame):
 
 ax.set_title("Coherent States for a System With "+str(TotalEnergyLevels)+" Energy Levels.")
 ax.set_xlabel("Position")
-ax.set_ylabel("Energy Level and Probability Density")
+ax.set_ylabel("Energy Level and Wave Function Amplitude")
 
 # for n in range(N):
 # 	# ω = 2*h*(n+1/2) / (m*A**2)
