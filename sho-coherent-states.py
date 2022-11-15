@@ -1,7 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation,ImageMagickWriter
 from ch_state import ch_state
+from datetime import datetime
+
 
 plt.rcParams['text.usetex'] = True
 
@@ -13,7 +15,7 @@ m = 1
 
 TotalEnergyLevels = 15
 
-N=5
+N=15
 states = [ch_state(m,ω,E,TotalEnergyLevels) for E in range(N)]
 
 # print(A)
@@ -36,7 +38,7 @@ def init():
 	return ln0,ln,
 
 
-T = 2*π/ω
+T = 2*2*π/ω
 spf = 1/30
 times = np.arange(0, T, spf)
 Y = [[] for _ in range(len(states))]
@@ -62,4 +64,7 @@ ax.set_ylabel("Energy Level and Probability Density")
 
 ani = FuncAnimation(fig, update, init_func=init, frames=len(times), interval=spf*1000, repeat=True) 
 
-plt.show()
+file_name = str(datetime.now())+'-coherent_Sim.gif'
+
+ani.save(file_name,"MovieWriter", fps=int(1/spf),dpi=500)
+
