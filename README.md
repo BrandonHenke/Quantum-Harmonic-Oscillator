@@ -25,16 +25,23 @@ where $\omega$ is the angular frequency of the oscillations.
 ### Energy Eigenstates
 
 The fact that this potential is useful for study in quantum mechanics shouldn't be a surprise, given that it's so important everywhere else in physics, so this repository is used to visualize interesting states of a quantum system in a SHO potential.
-If one solves the time independent Schr\"odinger equation,
-$$\hat{H}\psi = E\psi$$,
+If one solves the time independent Schroedinger equation,
+$$
+\hat{H}\psi = E\psi,
+$$
 where, for the SHO,
-$$\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2, one can find the spatial wave functions for energy eigenstates of the system.
+$$
+\hat{H} = \frac{\hat{p}^2}{2m} + \frac{1}{2}m\omega^2\hat{x}^2,
+$$
+one can find the spatial wave functions for energy eigenstates of the system.
 
 ### Coherent States
 
 However, somethings that might be a bit more interesting than energy eigenstates are coherent states.
 These states are ones that are eigenstates of the anihillation operator:
-$$a^\dagger \psi' = \lambda \psi'$$,
+$$
+a^\dagger \psi' = \lambda \psi',
+$$
 where $\lambda \in \mathrm{C}$.
 One can solve this eigenvalue problem to find the coherent states.
 
