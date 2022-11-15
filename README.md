@@ -41,3 +41,9 @@ One can solve this eigenvalue problem to find the coherent states.
 
 However, if one wants to time evolve the coherent states, it would be easier to write them as a linear combination of the energy eigenstates, since time evolutions are very easy to work with in the energy eigenstate basis.
 
+### Animations
+
+There are two included animations.
+Both are time evolutions of 15 energy levels of coherent states.
+One of them is the probability distribution, and the other is the real part of the wave function.
+Note that the amplitudes are exaggerated to be more visible to the viewer.
